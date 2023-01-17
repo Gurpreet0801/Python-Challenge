@@ -48,7 +48,7 @@ print(f"Greatest Decrease in Profits: {TotalMonths[MinMonth]} (${(str(Minimum))}
 
 
 #Print and Export the .txt filr
-File = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Python-Challenge\\Pybank\\Resources\\Pybank.txt"
+File = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Python-Challenge\\Pybank\\Analysis\\Pybank.txt"
 with open(File,"w") as text_file:
     print("Final Analysis" , file=text_file)
     print("----------------------------", file=text_file)
