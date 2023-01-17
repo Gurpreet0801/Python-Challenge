@@ -52,7 +52,7 @@ File = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Python-Challen
 with open(File,"w") as text_file:
     print("Final Analysis" , file=text_file)
     print("----------------------------", file=text_file)
-    print(f"Total Months: {TotalMonths}",file=text_file)
+    print(f"Total Months: {len(TotalMonths)}",file=text_file)
     print(f"Total: ${sum(Profit)}",file=text_file)
     print(f"Average Change: {round(sum(MonthlyProfit)/len(MonthlyProfit),2)}",file=text_file)
     print(f"Greatest Increase in Profits: {TotalMonths[MaxMonth]} (${(str(Maximum))})",file=text_file)
