@@ -42,7 +42,7 @@ print("-------------------------")
 
 #  Set the path & Enter details in txt file 
 
-FileOne = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Python-Challenge\\PyPoll\\Resources\\Pypoll.txt"
+FileOne = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Python-Challenge\\PyPoll\\Analysis\\Pypoll.txt"
 with open(FileOne, "w") as text_file:
     print("Election Results", file=text_file)
     print("-------------------------", file=text_file)
