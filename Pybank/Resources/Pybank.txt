@@ -1,0 +1,5 @@
+Final Analysis
+----------------------------
+Total Months: 86
+Total: $22564198
+Average Change: $-817107.36
