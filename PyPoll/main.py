@@ -1,44 +1,47 @@
+#Create and Read the file
 import os
 import csv
 
+#Giving Path
 FileOne = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Python-Challenge\\PyPoll\\Resources\\election_data.csv"
 
 with open(FileOne) as csvfile:
 
-    # CSV reader specifiing the delimiter and variable that holds contents within the file
+    # CSV reader & reading the first row 
     reader = csv.reader(csvfile, delimiter=',')
-
-    # Reading the first row (header)
     csv_header = next(reader)
 
-    CandidateList = [candidate[2] for candidate in reader]
+    CandidateList = [Candidate[2] for Candidate in reader]
     
-# Calculating the number of total votes
+# Total Number of Votes
 total_votes = len(CandidateList)
 
-# Creating a unique list of the candidates with the corresponding number of votes
-canditates_info = [[candidate,CandidateList.count(candidate)] for candidate in set(CandidateList)]
+# List of Candidates with Count of Votes
 
-# Sorting the list so that the first candidate becomes the winner 
-canditates_info = sorted(canditates_info, key=lambda x: x[1], reverse=True)
+Candidate_Details = [[Candidate,CandidateList.count(Candidate)] for Candidate in set(CandidateList)]
 
-# Printing the election results
+# Sorting the list using Key=Lambda function as used in PayBank
+Candidate_Details = sorted(Candidate_Details, key=lambda x: x[1], reverse=True)
+
+# Print
 print("Election Results")
 print("-------------------------")
 print(f"Total Votes: {total_votes}")
 print("-------------------------")
 
-for candidate in canditates_info:
-    percent_votes = (candidate[1] / total_votes) * 100
-    print(f'{candidate[0]}: {percent_votes:6.3f}% ({candidate[1]})')
+for Candidate in Candidate_Details:
+    percent_votes = (Candidate[1] / total_votes) * 100
+    
+    #Using 6.3f% to round of upto 6 decimals to 3 decimal points
+    print(f'{Candidate[0]}: {percent_votes:6.3f}% ({Candidate[1]})')
 
 print("-------------------------")
-print(f"Winner: {canditates_info[0][0]}")
+print(f"Winner: {Candidate_Details[0][0]}")
 print("-------------------------")
 
 
-#  Printing the  election results to text file 
-# Set path for file
+#  Set the path & Enter details in txt file 
+
 FileOne = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Python-Challenge\\PyPoll\\Resources\\Pypoll.txt"
 with open(FileOne, "w") as text_file:
     print("Election Results", file=text_file)
@@ -46,11 +49,11 @@ with open(FileOne, "w") as text_file:
     print(f"Total Votes: {total_votes}", file=text_file)
     print("-------------------------", file=text_file)
 
-    for candidate in canditates_info:
-        percent_votes = (candidate[1] / total_votes) * 100
-        print(f'{candidate[0]}: {percent_votes:6.3f}% ({candidate[1]})', file=text_file)
+    for Candidate in Candidate_Details:
+        percent_votes = (Candidate[1] / total_votes) * 100
+        print(f'{Candidate[0]}: {percent_votes:6.3f}% ({Candidate[1]})', file=text_file)
 
     print("-------------------------", file=text_file)
-    print(f"Winner: {canditates_info[0][0]}", file=text_file)
+    print(f"Winner: {Candidate_Details[0][0]}", file=text_file)
     print("-------------------------", file=text_file)
 
