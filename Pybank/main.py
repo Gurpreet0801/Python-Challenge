@@ -1,63 +1,60 @@
 #Create and Read file 
-
 import os
 import csv
 
-#Path for the CSV file in Resources
-File = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Module3\\Pybank\\Resources\\budget_data.csv"
+#Providing Path
 
-#Create the list for sorting
-list_data= []
+File = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Python-Challenge\\Pybank\\Resources\\budget_data.csv"
+#C:\Users\surbh\Downloads\Gurpreet\Gurpreet DA Study\Module3\Pybank\Resources\budget_data.csv
+
+#Create the list for iteration
+TotalMonths = []
+Profit = []
+MonthlyProfit = []
 
 
 #open the file 
-with open(File) as csvfile:
-    reader = csv.DictReader(csvfile)
-
-    for row in reader:
-        list_data.append({"month": row["Date"], "amount": int(row["Profit/Losses"]),"change": 0})
+with open(File, encoding="utf-8") as FileOne:
+    csvreader = csv.reader(FileOne,delimiter=",") 
+    header = next(csvreader) 
 
 #Calculating Total Months
-TotalMonths = len(list_data)
+    for row in csvreader: 
+
+        # Appending Total Months and Profit
+        TotalMonths.append(row[0])
+        Profit.append(int(row[1]))
+    for i in range(len(Profit)-1):
+        MonthlyProfit.append(Profit[i+1]-Profit[i])
 
 #Calculate changes in amount
-Old_amount = list_data[0]["amount"]
-for i in range(TotalMonths):
-    list_data[i]["change"] = list_data[i]["amount"] - Old_amount
-    change_amount = list_data[i]["amount"]
+    Maximum = max(MonthlyProfit)
+    Minimum = min(MonthlyProfit)
 
-#Calculate total amount
+#Considering Months value has changed to next month when icrementing
 
-TotalAmount = sum(row["amount"] for row in list_data)
-
-#calculating Average 
-
-
-TotalChange = sum(row["change"] for row in list_data)
-avg = round(TotalChange/(TotalMonths+1),2)
-
-#Getting Increase and Decrease , key= Lambda x:x function was used to return the output,it takes more arguments
-# It have only one expression which can be evaluated.
- 
-Maximum = max(list_data, key = lambda x:x["change"])
-Minimum = min(list_data, key= lambda x:x["change"])
-
+MaxMonth = MonthlyProfit.index(max(MonthlyProfit)) + 1
+MinMonth = MonthlyProfit.index(min(MonthlyProfit)) + 1 
 
 #Print the output
 
 print("Financial Analysis")
 print("----------------------------")
-print(f"Total Months: {TotalMonths}")
-print(f"Total: ${TotalAmount}")
-print(f"Average Change: ${avg}")
-print(f'Greatest Increase in Profits: {Maximum["month"]} (${Maximum["change"]})')
-print(f'Greatest Decrease in Profits: {Minimum["month"]} (${Minimum["change"]})')
+print(f"Total Months: {len(TotalMonths)}")
+print(f"Total: ${sum(Profit)}")
+print(f"Average Change: {round(sum(MonthlyProfit)/len(MonthlyProfit),2)}")
+print(f"Greatest Increase in Profits: {TotalMonths[MaxMonth]} (${(str(Maximum))})")
+print(f"Greatest Decrease in Profits: {TotalMonths[MinMonth]} (${(str(Minimum))})")
 
-#Print and Export the .txt file
+
+#Print and Export the .txt filr
 File = "C:\\Users\\surbh\\Downloads\\Gurpreet\\Gurpreet DA Study\\Python-Challenge\\Pybank\\Resources\\Pybank.txt"
 with open(File,"w") as text_file:
     print("Final Analysis" , file=text_file)
     print("----------------------------", file=text_file)
     print(f"Total Months: {TotalMonths}",file=text_file)
-    print(f"Total: ${TotalAmount}",file=text_file)
-    print(f"Average Change: ${avg}",file=text_file)
+    print(f"Total: ${sum(Profit)}",file=text_file)
+    print(f"Average Change: {round(sum(MonthlyProfit)/len(MonthlyProfit),2)}",file=text_file)
+    print(f"Greatest Increase in Profits: {TotalMonths[MaxMonth]} (${(str(Maximum))})",file=text_file)
+    print(f"Greatest Decrease in Profits: {TotalMonths[MinMonth]} (${(str(Minimum))})",file=text_file) 
+
