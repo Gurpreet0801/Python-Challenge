@@ -1,8 +1,9 @@
 Python-Challenge
 ---------------------------
 PyBank
--------------
+---------------
 
+Without realizing I created txt files in resources which were supposed to be analysis folder, was able to fix that 
 
 Repository was created 
 As mentioned in the module cloned repository was done
